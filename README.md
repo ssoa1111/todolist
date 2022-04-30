@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# REACT로 만드는 Todolist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## useState()
+useState()는 데이터 값이 자주 변하는 곳에 상태 관리를 할 수 있게 합니다.
+```javascript
+const [todos, setTodos] = useState()
+```
 
-## Available Scripts
+## useRef()
+useRef()는 값이 변경되어도 렌더링 되지 않습니다.
+```javascript
+const nextId = useRef(4);
+```
 
-In the project directory, you can run:
+## useCallback()
+useCallback()은 의존성 배열에 따라 렌더링 됩니다.
+```javascript
+const onInsert = useCallback((text)=>{
+    const todo = {
+      id : nextId.current,
+      text,
+      checked : false
+    };
+    setTodos(todos.concat(todo));
+    nextId.current += 1;
+  });
+```
 
-### `yarn start`
+## filter()
+filter()는 배열의 내용이 참인 것만 거를 수 있습니다,
+```javascript
+setTodos(todos.filter((todo)=>todo.id !== id));
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## map()
+map()는 forEach()같이 배열을 조회할 수 있지만 새로운 배열을 리턴합니다.
+```javascript
+setTodos(todos.map((todo)=>
+      todo.id === id ? {...todo, checked : !todo.checked} : todo,
+    ))
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 깃 페이지 만드는 순서
+1. 터미널 yarn add gh-pages
+2. package.json 파일에서 homepage 추가
+```javascript
+"homepage": "https://ssoa1111.github.io/todolist"
+```
+3. git push 완료하기
+4. 터미널에서 yarn deploy
