@@ -47,5 +47,10 @@ setTodos(todos.map((todo)=>
 ```javascript
 "homepage": "https://ssoa1111.github.io/todolist"
 ```
+3. package.json 파일에서 scripts 추가
+```javascript
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"
+```
 3. git push 완료하기
 4. 터미널에서 yarn deploy
